@@ -1,0 +1,24 @@
+{% extends 'administrators/admin_base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Додати спеціаліста
+{% endblock %}
+
+{% block content %}
+    <p>
+        Ім'я: {{ doctor.name }}
+    </p>
+
+    <p>
+        Кількість записів: {{ ap_amount }}
+    </p>
+
+    Процедури:
+    {% for d in procedures %}
+        <p>{{d}}</p>
+    {% endfor %}
+
+    <a class="btn btn-success shadow_head" href="{% url 'add_procedure' doctor_id=doctor.id %}">Додати процедуру</a>
+{% endblock %}

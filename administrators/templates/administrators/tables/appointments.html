@@ -1,0 +1,66 @@
+{% extends 'administrators/admin_base.html' %}
+{% load static %}
+
+{% block title %}
+    Таблиця записів
+{% endblock %}
+
+{% block content %}
+    {% include 'administrators\pagination.html' %}
+    <table border="1" align="center" id="example" class="table table-striped table-bordered" style="width:80%; background-color: white;">
+        <thead class="thead-dark">
+            <tr class="thead-dark">
+                <th scope="row">Id</th>
+                <th scope="row">Ім'я пацієнта</th>
+                <th scope="row">Ім'я лікаря</th>
+                <th scope="row">Назва процедури</th>
+                <th scope="row">Година</th>
+                {% if is_admin == True %}
+                    <th scope="row">Видалити</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in appointments %}
+                <tr id="appointment_{{user.id}}">
+                    <td>{{user.id}}</td>
+                    <td>{{user.name_of_patient}}</td>
+                    <td>{{user.name_of_doctor}}</td>
+                    <td>{{user.name_of_procedure}}</td>
+                    <td>{{user.hour}}</td>
+                    {% if is_admin == True %}
+                        <td align="center">
+                            <form action="" method="post" class="like-form" id="{{user.id}}">
+                                {% csrf_token %}
+                                <button type="submit" style="background-color: #F73636; border: none; border-radius: 10px; width: 100px; height: 40px;">Видалити</button>
+                            </form>
+                        </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot class="thead-dark">
+            <tr class="thead-dark">
+                <th scope="row">Id</th>
+                <th scope="row">Ім'я пацієнта</th>
+                <th scope="row">Ім'я лікаря</th>
+                <th scope="row">Назва процедури</th>
+                <th scope="row">Година</th>
+                {% if is_admin == True %}
+                    <th scope="row">Видалити</th>
+                {% endif %}
+            </tr>
+        </tfoot>
+    </table>
+
+    {% if is_manager == False %}
+        <div align="center">
+            <a class="btn btn-success shadow_head" href="{% url 'add_appointment' %}">Додати запис</a>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block scripts %}
+    <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'></script>
+    <script type="text/javascript" src="{% static 'js/delete_appointment.js' %}"></script>
+{% endblock %}

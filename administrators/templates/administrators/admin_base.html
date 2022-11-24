@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            {% block title %}{% endblock %}
+        </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+
+    <body style="background-color: #F5F1E0;">
+        <header>
+			<nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top shadow_head">
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav mr-auto">
+                        <a class="navbar-brand" href="{% url 'home' %}" style="height:40px;">
+                            <img class="d-inline-block align-top logotype" height="40px;" src="{% static 'images/logo.svg' %}">
+                        </a>
+
+                        {% for k, v in options.items %}
+                            {% if v != '#' %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url v %}">{{k}}</a>
+                            </li>
+                            {% else %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">{{k}}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+
+                    </ul>
+                    <a class="btn btn-danger shadow_head" href="{% url 'logout' %}">Вийти</a>
+                </div>
+            </nav>
+        </header>
+        <br>
+
+        <div style="margin-top: 100px;">
+            {% block content %}{% endblock %}
+        </div>
+
+        <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'></script>
+
+        {% block scripts %}{% endblock %}
+    </body>
+</html>

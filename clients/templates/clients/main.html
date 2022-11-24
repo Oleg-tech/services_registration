@@ -1,0 +1,27 @@
+{% extends 'clients/base.html' %}
+{% load static %}
+
+{% block title %}
+    Головна сторінка
+{% endblock %}
+
+{% block content %}
+    {% if is_worker == True %}
+        <div style="width: 50%; margin-left: 40%; margin-top: 50px;">
+            <div style="font-size: 20px;" align="left">
+                <p><b>Статус:</b> Працівник</p>
+            </div>
+            <p><b>Записатись на прийом</b> - записатись на прийом до лікаря</p>
+            <p><b>Панель керування</b> - адмін панель</p>
+        </div>
+    {% else %}
+        <div style="width: 50%; margin-left: 40%; margin-top: 50px;">
+            <div style="font-size: 20px;" align="left">
+                <p><b>Статус:</b> Користувач</p>
+            </div>
+            <p><b>Записатись на прийом</b> - записатись на прийом до лікаря</p>
+            <p><b>Мої записи(для авторизованих)</b> - записи користувача до лікаря</p>
+        </div>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "clients/base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+                    <h2 class="card-title text-center">Увійти</h2>
+                    <form method="POST" style="margin-left: 10px; margin-right: 10px">
+                        <div class="form-group ">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <div class="form-label">{{ form.username }}</div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-label">{{ form.password }}</div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Увійти</button>
+                        <a class="btn btn-primary" href="/registration">Реєстрація</a>
+                    </form>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

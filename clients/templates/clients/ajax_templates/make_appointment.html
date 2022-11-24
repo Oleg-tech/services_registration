@@ -1,0 +1,9 @@
+{% for doctor in doctors %}
+    <div class="dives" align="center">
+        <div style="padding-left: 20px; padding-top: 10px;"><b>Ім'я:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ doctor.name }}</div>
+        <div style="padding-left: 20px;"><b>Спеціальність:</b> {{ doctor.speciality }}</div>
+        <div style="padding-left: 20px;"><b>Номер кабінету:</b> {{ doctor.location }}</div>
+        <div style="padding-left: 20px;"><b>Графік роботи:</b> {{ doctor.schedule_from }} - {{ doctor.schedule_to }}</div>
+        <p align="center" style="padding-top: 10px;"><a class="btn btn-primary shadow_head" href="{% url 'appoint_doctor' doctor_id=doctor.id %}">Записатись на прийом</a></p>
+    </div>
+{% endfor %}

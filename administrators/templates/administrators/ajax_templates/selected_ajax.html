@@ -1,0 +1,34 @@
+{% load static %}
+
+<script src="{% static 'js/selected.js' %}"></script>
+
+
+<div class="dives" align="center">
+    <div class="add_to_selected">
+        <form class="like-form" method="post" action="" id="{{product.id}}">
+            {% csrf_token %}
+            <button type="submit" style="background: url({% static 'images/x-circle.svg' %}); width: 16px; height: 16px; border: none;"></button>
+        </form>
+    </div>
+    <div class="discount">-{{ product.percent_of_sale }}%</div>
+    <div class="picture" style="z-index: 100;">
+        <img class='container_img' style="height: 150px; width: 150px;" src="{{ product.picture }}">
+    </div>
+
+    <a href="/{{product.shop_name}}/{{product.category}}/{{product.id}}" style="text-decoration: none;">
+        <div class="info">
+            <div class="old_price">
+                <s>{{ product.old_price }}</s>
+            </div>
+            <div class="new_price">
+                <strong>{{ product.new_price }}</strong> {{ product.date_of_end }}
+            </div>
+            <div class="title">
+                {{ product.name }}
+            </div>
+        </div>
+    </a>
+    <div id="weight"><strong>{{ product.category }}</strong></div>
+</div>
+
+<div></div>

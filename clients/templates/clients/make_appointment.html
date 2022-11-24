@@ -1,0 +1,49 @@
+{% extends "clients/base.html" %}
+
+{% load static %}
+
+{% block title %}
+    Записатись
+{% endblock %}
+
+{% block styles %}
+    <link type="text/css" href="{% static 'css/make_appointment.css' %}" rel="stylesheet"/>
+    <link type="text/css" href="{% static 'css/doctor_view.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+{% block content %}
+    <div class="d-flex" id="wrapper">
+        <div class="bg-light border-right vh-100" id="sidebar-wrapper">
+            <div class="sidebar-heading" align="center">Фільтр</div>
+            <div class="list-group list-group-flush overflow-auto h-100" style="margin-left: 10px;">
+                  Спеціальність
+                {% for prof in professions %}
+                    <div>
+                        <input class="filter-checkbox" data-filter="speciality" id="{{prof}}" value="{{prof}}" type="checkbox">
+                        <label for="{{prof}}"><b>{{prof}}</b></label>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="doctor" id="filterProducts" style="margin-top: 10px;">
+                <p class="ajaxLoader">Loading...</p>
+                {% for doctor in doctors %}
+                    <div class="dives" align="center">
+                        <div style="padding-left: 20px; padding-top: 10px;"><b>Ім'я:</b> {{ doctor.name }}</div>
+                        <div style="padding-left: 20px;"><b>Спеціальність:</b> {{ doctor.speciality }}</div>
+                        <div style="padding-left: 20px;"><b>Номер кабінету:</b> {{ doctor.location }}</div>
+                        <div style="padding-left: 20px;"><b>Графік роботи:</b> {{ doctor.schedule_from }} - {{ doctor.schedule_to }}</div>
+                        <p align="center" style="padding-top: 10px;"><a class="btn btn-primary shadow_head" href="{% url 'appoint_doctor' doctor_id=doctor.id %}">Записатись на прийом</a></p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'></script>
+    <script type="text/javascript" src="{% static 'js/filter.js' %}"></script>
+{% endblock %}

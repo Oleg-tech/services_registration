@@ -1,0 +1,21 @@
+.doctor {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 10px;
+}
+
+.doctor .dives {
+    position: relative;
+    width: 400px;
+    height: 200px;
+    background-color: white;
+    margin: 5px;
+    text-decoration: none;
+    text-align: left;
+    font-size: 15px;
+    border-radius: 20px;
+}
+
+.reg_button {
+    align-self: center;
+}

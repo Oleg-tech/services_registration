@@ -1,0 +1,34 @@
+{% extends 'administrators/admin_base.html' %}
+{% load static %}
+
+{% block title %}
+    Таблиця пацієнтів
+{% endblock %}
+
+{% block content %}
+    <table border="1" align="center" id="example" class="table table-striped table-bordered" style="width:80%; background-color: white;">
+        <thead class="thead-dark">
+            <tr class="thead-dark">
+                <th scope="row">Id</th>
+                <th scope="row">Ім'я</th>
+                <th scope="row">Адреса</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{user.id}}</td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.email}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot class="thead-dark">
+            <tr class="thead-dark">
+                <th scope="row">Id</th>
+                <th scope="row">Ім'я</th>
+                <th scope="row">Адреса</th>
+            </tr>
+        </tfoot>
+    </table>
+{% endblock %}

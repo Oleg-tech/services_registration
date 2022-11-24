@@ -1,0 +1,27 @@
+{% extends "panel/admin_base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<body background="{% static 'admin/img/bg-037.jpg' %}">
+    <link rel='stylesheet' href="{% static 'css/style.css' %}">
+    <br>
+    <div class="container" style="margin-top: 50px;">
+        <div class="row">
+            <div class="offset-lg-3 col-lg-6 col-sm-12">
+                <div class="shadow">
+                    <form enctype="multipart/form-data" method="POST" action="" style="margin-left: 10px; margin-right: 10px">
+                        <div class="form-group ">
+                            {% csrf_token %}
+                            {{ form }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Вход</button>
+                    </form>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'administrators/admin_base.html' %}
+{% load static %}
+
+{% block title %}
+    Таблиця працівників
+{% endblock %}
+
+{% block content %}
+    {% include 'administrators\pagination.html' %}
+    <table border="1" align="center" id="example" class="table table-striped table-bordered" style="width:80%; background-color: white;">
+        <thead class="thead-dark">
+            <tr class="thead-dark">
+                <th scope="row">Id</th>
+                <th scope="row">Ім'я</th>
+                <th scope="row">Спеціальність</th>
+                <th scope="row">Розклад</th>
+                <th scope="row">Кабінет</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in workers %}
+                <tr>
+                    <td>{{user.id}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.speciality}}</td>
+                    <td>{{user.schedule_from}}-{{user.schedule_to}}</td>
+                    <td>{{user.location}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot class="thead-dark">
+            <tr class="thead-dark">
+                <th scope="row">Id</th>
+                <th scope="row">Ім'я</th>
+                <th scope="row">Спеціальність</th>
+                <th scope="row">Розклад</th>
+                <th scope="row">Кабінет</th>
+            </tr>
+        </tfoot>
+    </table>
+
+    {% if is_manager == True %}
+        <div align="center">
+            <a class="btn btn-success shadow_head" href="{% url 'add_worker' %}">Додати лікаря</a>
+            <a class="btn btn-success shadow_head" href="{% url 'add_admin' %}">Додати адміністратора</a>
+            <a class="btn btn-success shadow_head" href="{% url 'add_manager' %}">Додати менеджера</a>
+        </div>
+    {% endif %}
+{% endblock %}
